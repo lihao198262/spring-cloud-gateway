@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: cookie_route
+        uri: https://www.sina.com.cn/
+        predicates:
+        - Cookie=chocolate, ch.p
+      - id: header_route
+        uri: https://www.baidu.com/
+        predicates:
+        - Header=X-Request-Id, \d+
+      - id: host_route
+        uri: https://www.163.com/
+        predicates:
+        - Path=/foo/{segment}
+      - id: host_route_2
+        uri: https://www.126.com/
+        predicates:
+        - Path=/boo/{segment}
+      - id: query_route
+        uri: http://www.sohu.com/
+        predicates:
+        - Query=baz
+      - id: remoteaddr_route
+        uri: https://www.tmall.com/
+        predicates:
+        - RemoteAddr=172.16.4.0/23
+      - id: remoteaddr_route
+        uri: https://www.jd.com/
+        predicates:
+        - RemoteAddr=172.16.6.0/23
+      
+      
